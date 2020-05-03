@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30011.22
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Z8431GlazovSAODKP", "Z8431GlazovSAODKP.vcxproj", "{4A0B5D2B-B902-4859-A9B7-F64B673CE7E5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4A0B5D2B-B902-4859-A9B7-F64B673CE7E5}.Debug|x64.ActiveCfg = Debug|x64
+		{4A0B5D2B-B902-4859-A9B7-F64B673CE7E5}.Debug|x64.Build.0 = Debug|x64
+		{4A0B5D2B-B902-4859-A9B7-F64B673CE7E5}.Debug|x86.ActiveCfg = Debug|Win32
+		{4A0B5D2B-B902-4859-A9B7-F64B673CE7E5}.Debug|x86.Build.0 = Debug|Win32
+		{4A0B5D2B-B902-4859-A9B7-F64B673CE7E5}.Release|x64.ActiveCfg = Release|x64
+		{4A0B5D2B-B902-4859-A9B7-F64B673CE7E5}.Release|x64.Build.0 = Release|x64
+		{4A0B5D2B-B902-4859-A9B7-F64B673CE7E5}.Release|x86.ActiveCfg = Release|Win32
+		{4A0B5D2B-B902-4859-A9B7-F64B673CE7E5}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {84E01A90-92E6-4CF4-971F-AB4AB6A593C2}
+	EndGlobalSection
+EndGlobal
