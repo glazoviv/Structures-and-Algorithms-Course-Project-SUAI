@@ -162,6 +162,7 @@
     <ClInclude Include="Doctor.h" />
     <ClInclude Include="HashTable.h" />
     <ClInclude Include="Patient.h" />
+    <ClInclude Include="Referral.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

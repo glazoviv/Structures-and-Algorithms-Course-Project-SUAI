@@ -84,6 +84,41 @@ public:
 		return next;
 	}
 	/**
+	 * \brief	Удалить узлы соответствующие условию.
+	 *
+	 * \param	predicate	Функция, возвращающая истину для подходящего элемента.	
+	 */
+	template<typename Func>
+	void Erase(const Func& predicate) {
+		if (!head_) {
+			return;
+		}
+
+		auto node = head_->next;
+
+		while(node != head_) {
+			auto next = node->next;
+
+			if(predicate(node->value)) {
+				Erase(node);
+			}
+
+			node = next;
+		}
+
+		if(predicate(head_->value)) {
+			Erase(head_);
+		}
+	}
+	/**
+	 * \brief	Очистка контейнера.
+	 * 
+	 */
+	void Clear() {
+		head_ = nullptr;
+	}
+
+	/**
 	 * \brief	Найти узел.
 	 * 
 	 * \param	value	Значение, которое ищем.
@@ -101,6 +136,33 @@ public:
 		auto node = head_->next;
 		while (node != head_) {
 			if (node->value == value) {
+				return node;
+			}
+
+			node = node->next;
+		}
+
+		return nullptr;
+	}
+	/**
+	 * \brief	Найти узел.
+	 *
+	 * \param	predicate	Функция, возвращающая истину для подходящего элемента.
+	 * \return	Указатель на первый встретившийся узел с указанным значением.
+	 */
+	template<typename Func>
+	std::shared_ptr<Node> Find(const Func& predicate) {
+		if (!head_) {
+			return nullptr;
+		}
+
+		if (predicate(head_->value)) {
+			return head_;
+		}
+
+		auto node = head_->next;
+		while (node != head_) {
+			if (predicate(node->value)) {
 				return node;
 			}
 

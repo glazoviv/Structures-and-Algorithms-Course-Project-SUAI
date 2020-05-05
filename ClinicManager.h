@@ -2,9 +2,11 @@
 
 #include "Patient.h"
 #include "Doctor.h"
+#include "Referral.h"
 
 #include "HashTable.h"
 #include "AvlTree.h"
+#include "CLinkedList.h"
 
 
 class ClinicManager {
@@ -28,7 +30,7 @@ public:
 	 * 
 	 * \return Массив указательней на больных.
 	 */
-	std::vector<std::shared_ptr<Patient>> GetPatients() const;
+	std::vector<std::weak_ptr<Patient>> GetPatients() const;
 
 	//Поиска больного по рег. номеру.
 	//Результат - все сведения о больном и ФИО врача к которому у него направление
@@ -39,7 +41,7 @@ public:
 	 * \param	name	ФИО.
 	 * \return	Список указателей на больных.
 	 */
-	std::vector<std::shared_ptr<Patient>> GetPatientsByName(std::string_view name) const;
+	std::vector<std::weak_ptr<Patient>> GetPatientsByName(std::string_view name) const;
 
 
 	/**
@@ -64,18 +66,36 @@ public:
 	 */
 	void EraseDoctors();
 
-	//Поиск врача по ФИО. 
-	//Результат - все сведения о враче + ФИО и рег № больных, у которых направление к врачу
-	//GetDoctorByName(std::string_view name) const;
+	/**
+	 * \brief	Поиск врача и данных пациентов по ФИО.
+	 * 
+	 * \param	name	ФИО врача.
+	 * 
+	 * \return	Врач + ФИО и рег № больных, у которых направление к врачу.
+	 */
+	std::pair <std::weak_ptr<Doctor>, std::vector<std::weak_ptr<Patient>>> GetDoctorByName(std::string_view name);
 
-	//Поиск врача по должности. Может производится поиск по части должности
-	// Список врачей с ФИО, должности, № кабинета и графика приема.
-	std::vector<std::shared_ptr<Doctor>> GetDoctorsByPosition(std::string_view position) const;
+	/**
+	 * \brief	Поиск врача по должностиили её части.
+	 * 
+	 * \param	position	Должность или её часть.
+	 * \return	Список врачей.
+	 */
+	std::vector<std::weak_ptr<Doctor>> GetDoctorsByPosition(std::string_view position);
 
+	enum class ReferralError {
+		DOCTOR_NOT_EXISTS,
+		PATIENT_NOT_EXISTS,
+		REFERRAL_EMPTY,
+		DATETIME_BUSY,
+		OK
+	};
 
 	//Регистрация выдачи больному направления к врачу
+	ReferralError RegistrationRefferal(std::shared_ptr<Referral> refferral);
 
 	//Возврат направления к врачу
+	bool RefundRefferal(std::shared_ptr<Referral> refferral);
 
 private:
 	/** Больных храним в хэш таблице. Ключ - регистрационный номер  */
@@ -85,6 +105,9 @@ private:
 
 	/** В сортированном по ФИО дереве храним врачей. Сортируем по ФИО врача */
 	AvlTree<std::string_view, std::shared_ptr<Doctor>> name_doctor_;
+
+	/** Сортированные по ФИО врача направления */
+	СLinkedList<std::shared_ptr<Referral>> referrals_;
 };
 
 
