@@ -1,6 +1,6 @@
 ﻿/*****************************************************************//**
  * \file   Z8431GlazovSAODKP.cpp
- * \brief  
+ * \brief  Главный файл системы регистрации больных в поликлинике.
  * 
  * \author Glazov I.V.
  * \date   May 2020
@@ -9,15 +9,17 @@
 /*
 1 табл - 3          Регистрация больных в поликлинике
 2 табл - 1          Закрытое хеширование с линейным опробованием        +
-3 табл - 3          Пузырьковый
-4 табл - 3          Циклический двунаправленный
-5 табл - 0          Симметричный
+3 табл - 3          Пузырьковый +
+4 табл - 3          Циклический двунаправленный +
+5 табл - 0          Симметричный    +
 6 табл - 1          Прямой
 */
 
 #include "ClinicManager.h"
 #include "HashTable.h"
 #include "CLinkedList.h"
+
+#include "Accessory.h"
 
 #include <fstream>
 #include <random>
@@ -64,6 +66,7 @@ bool AllocationToCsv(const std::vector<size_t>& arrHashTableAlloc)
     return true;
 }
 
+
 int main()
 {
     setlocale(LC_ALL, "Rus");
@@ -71,8 +74,17 @@ int main()
     AllocationToCsv(TestHash());
 
     //Patient::EnterPatient();
-    //Doctor::EnterDoctor();
+    auto doctor = Doctor::EnterDoctor();
 
+    ClinicManager clinic;
+
+    auto res = clinic.AddDoctor(doctor);
+
+    auto doctors = clinic.GetDoctors();
+
+    int a = 1;
+
+    /*
     HashTable<std::string, Patient, RegisterNumberHash> hash;
 
     hash.Insert(  "12-111111", {});
@@ -86,10 +98,29 @@ int main()
     bool c2 = hash.Contains("12-111112");
     bool c3 = hash.Contains("12-111113");
 
-    
-    СLinkedList<int> list;
-    
+    AvlTree<int, int> tree;
 
+    tree.Insert(3, 1);
+    tree.Insert(5, 2);
+    tree.Insert(11, 55);
+
+
+    tree.Insert(11, 777);
+    
+    auto a = tree.Contains(11);
+
+    auto a235325 = tree.Contains(1587578785);
+
+    auto e = tree.GetValue(11);
+
+    tree.SymmetricForEach([](AvlTree<int, int>::Node node) {
+        cout << node.key << " " << node.value << endl;
+    });
+
+    */
+
+    /*
+    СLinkedList<int> list;
 
     list.PushFront(6);
     list.PushFront(5);
@@ -97,20 +128,13 @@ int main()
     list.PushFront(3);
     list.PushFront(88);
     list.PushFront(1);
-    
-    
-    
-    
-    
 
     auto node = list.Find(3);
     auto node1 = list.Find(2);
     auto node2 = list.Find(1);
 
-    list.SwapNode(node1, node2);
-
     BubleSort(list, std::greater<int>());
-
+    */
     /*
     ClinicManager manager;
 
@@ -122,6 +146,4 @@ int main()
 
     bool bR = manager.RemovePatient("11-123456");
     */
-    int a = 1;
-
 }

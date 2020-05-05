@@ -156,6 +156,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Accessory.h" />
+    <ClInclude Include="AvlTree.h" />
     <ClInclude Include="ClinicManager.h" />
     <ClInclude Include="CLinkedList.h" />
     <ClInclude Include="Doctor.h" />

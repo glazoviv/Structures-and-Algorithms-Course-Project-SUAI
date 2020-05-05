@@ -20,11 +20,13 @@ void ClearConsole();
 void PressToContinue();
 /**
  * \brief   Получает из консоли unsigned long
+ * 
  * \return  беззнаковое целое
  */
 unsigned long GetULongValue();
 /**
  * \brief   Получает из консоли unsigned long
+ * 
  * \param   enter_message     Текст, который будет показан перед вводом
  * \param   error_message     Текст, который будет показан при получении ошибки
  * \param   check             Функция проверки введенных данных
@@ -41,6 +43,7 @@ unsigned long GetULongValue(std::string_view enter_message,
 std::string EnterStringValue();
 /**
  * \brief   Получает из консоли строку
+ * 
  * \param   enter_message     Текст, который будет показан перед вводом
  * \param   error_message     Текст, который будет показан при получении ошибки
  * \param   check             Функция проверки введенных данных
@@ -49,3 +52,13 @@ std::string EnterStringValue();
 std::string EnterStringValue(std::string_view enter_message, 
 	std::string_view error_message, 
 	std::function<bool(std::string_view)> check);
+/**
+ * \brief   Прямой поиск в тексте.
+ * 
+ * \param   str         Строка, в которой производится поиск.
+ * \param   substring   Искомая подстрока.
+ * \param   start_pos   Позиция начала поиска.
+ * 
+ * /return  Номер первого символа искомой подстроки в строке. Если не найден, то -1.
+ */
+int FindSubstring(std::string_view str, std::string_view substring, int start_pos = 0);

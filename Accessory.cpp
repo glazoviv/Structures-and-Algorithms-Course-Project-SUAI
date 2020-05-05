@@ -128,3 +128,28 @@ std::string EnterStringValue(std::string_view enter_message, std::string_view er
     return temp;
 }
 
+int FindSubstring(std::string_view str, std::string_view substring, int start_pos) {
+    if(start_pos >= str.size() 
+        || start_pos < 0 
+        ||  substring.size() > str.size()) {
+        return -1;
+    }
+
+    auto str_size = str.size();
+    auto sub_size = substring.size();
+
+    int i = start_pos -1;
+    int j = 0;
+
+    do {
+        j = 0;
+        i++;
+
+        while ((j < sub_size) && (str.at(i + j) == substring.at(j))) {
+            j++;
+        }
+    } while (j < sub_size && i < str_size - sub_size);
+
+    return j == sub_size ? i : -1;
+}
+

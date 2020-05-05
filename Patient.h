@@ -57,6 +57,7 @@ private:
 	/**
 	 * \brief	Проверяет регистрационный номер согласно формату.
 	 * \param	number	Регистрационный номер
+	 * 
 	 * \return	Истину, если номер валиден.
 	 */
 	static bool IsValidRegistrationNumber(std::string_view number);
@@ -74,12 +75,15 @@ private:
 	std::string work_;
 };
 
+/**
+ * \brief	Структура для расчета хэша по номеру регистрации.
+ */
 struct RegisterNumberHash {
-	size_t operator() (const std::string& number) const {
+	size_t operator() (std::string_view number) const {
 		int iX = 2'123'417;
 
-		auto first = std::stoi(number.substr(0, 2));
-		auto second = std::stoi(number.substr(3));
+		auto first = std::stoi(number.substr(0, 2).data());
+		auto second = std::stoi(number.substr(3).data());
 
 		return second * iX + first;
 	}
