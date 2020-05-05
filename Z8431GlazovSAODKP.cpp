@@ -17,6 +17,7 @@
 
 #include "ClinicManager.h"
 #include "HashTable.h"
+#include "CLinkedList.h"
 
 #include <fstream>
 #include <random>
@@ -86,12 +87,31 @@ int main()
     bool c3 = hash.Contains("12-111113");
 
     
-
-    auto all = hash.GetAll();
-
-    //int a = 1;
+    СLinkedList<int> list;
+    
 
 
+    list.PushFront(6);
+    list.PushFront(5);
+    list.PushFront(4);
+    list.PushFront(3);
+    list.PushFront(88);
+    list.PushFront(1);
+    
+    
+    
+    
+    
+
+    auto node = list.Find(3);
+    auto node1 = list.Find(2);
+    auto node2 = list.Find(1);
+
+    list.SwapNode(node1, node2);
+
+    BubleSort(list, std::greater<int>());
+
+    /*
     ClinicManager manager;
 
     auto patinet = Patient::EnterPatient();
@@ -101,7 +121,7 @@ int main()
     bool bAd2 = manager.AddNewPatient(patinet2);
 
     bool bR = manager.RemovePatient("11-123456");
-
+    */
     int a = 1;
 
 }

@@ -157,6 +157,7 @@
   <ItemGroup>
     <ClInclude Include="Accessory.h" />
     <ClInclude Include="ClinicManager.h" />
+    <ClInclude Include="CLinkedList.h" />
     <ClInclude Include="Doctor.h" />
     <ClInclude Include="HashTable.h" />
     <ClInclude Include="Patient.h" />

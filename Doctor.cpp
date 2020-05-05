@@ -47,18 +47,18 @@ std::shared_ptr<Doctor> Doctor::EnterDoctor() {
 	return doctor;
 }
 
-std::string_view Doctor::GetName() {
+std::string_view Doctor::GetName() const {
     return name_;
 }
 
-std::string_view Doctor::GetPosition() {
+std::string_view Doctor::GetPosition() const {
     return position_;
 }
 
-unsigned int Doctor::GetCabinetNumber() {
+unsigned int Doctor::GetCabinetNumber() const {
     return cabinet_number_;
 }
 
-std::string_view Doctor::GetSchedule() {
+std::string_view Doctor::GetSchedule() const {
     return schedule_;
 }

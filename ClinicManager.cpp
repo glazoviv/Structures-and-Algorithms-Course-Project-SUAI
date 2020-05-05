@@ -46,3 +46,21 @@ bool ClinicManager::RemovePatient(std::string_view register_number) {
 
 	return result;
 }
+
+std::vector<std::shared_ptr<Patient>> ClinicManager::GetPatients() const {
+	return number_patient_.GetValues();
+}
+
+std::vector<std::shared_ptr<Patient>> ClinicManager::GetPatientsByName(std::string_view name) const {
+	std::vector<std::shared_ptr<Patient>> result;
+
+	if(name_patients_.count(name.data()) > 1) {
+		auto [begin, end] = name_patients_.equal_range(name.data());
+
+		for (auto it = begin; it != end; ++it) {
+			result.push_back(it->second);
+		}
+	}
+
+	return result;
+}

@@ -26,22 +26,22 @@ public:
      * \brief	Получить имя доктора.
      * \return	Имя
      */
-    std::string_view GetName();
+    std::string_view GetName() const;
     /**
      * \brief	Получить должность.
      * \return	Должность
      */
-    std::string_view GetPosition();
+    std::string_view GetPosition() const;
     /**
      * \brief	Получить номер кабинета.
      * \return	Номер кабинета.
      */
-    unsigned int GetCabinetNumber();
+    unsigned int GetCabinetNumber() const;
     /**
      * \brief	Получить расаписание работы.
      * \return	расписание
      */
-    std::string_view GetSchedule();
+    std::string_view GetSchedule() const;
 
 private:
     /** ФИО, не более 25 символов */

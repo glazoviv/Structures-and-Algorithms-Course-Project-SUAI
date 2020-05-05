@@ -93,18 +93,36 @@ public:
         storage_.resize(capacity_);
     }
     /**
-     * \brief   Запрос всех значений таблицы в формате <Ключ, Значение>.
+     * \brief   Запрос ссылок на все значения таблицы.
      * 
-     * \return массив ячеек таблицы.
+     * \return Массив ссылок значений таблицы.
      */
-    std::vector<std::pair<const Key&, const T&>> GetAll() {
-        std::vector<std::pair<const Key&, const T&>> result;
+    std::vector<const T&> GetRefValues() const {
+        std::vector<const T&> result;
         result.reserve(busy_count_);
 
         for (const auto& cell : storage_)
         {
             if(cell) {
-                result.push_back({cell->key, cell->value});
+                result.push_back(cell->value);
+            }
+        }
+
+        return result;
+    }
+    /**
+     * \brief   Запрос всех значений таблицы.
+     *
+     * \return Массив значений таблицы.
+     */
+    std::vector<T> GetValues() const {
+        std::vector<T> result;
+        result.reserve(busy_count_);
+
+        for (const auto& cell : storage_)
+        {
+            if (cell) {
+                result.push_back(cell->value);
             }
         }
 

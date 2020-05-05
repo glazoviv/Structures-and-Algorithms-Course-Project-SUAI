@@ -6,19 +6,37 @@
 
 class ClinicManager {
 public:
-	//регистрация нового больного
+	/**
+	 * \brief	Регистрация нового больного.
+	 * 
+	 * \param	patient	Указатель на пациента.
+	 * \return	В случае успеха - истина.
+	 */
 	bool AddNewPatient(std::shared_ptr<Patient> patient);
-	//удаление данных о больном
+	/**
+	 * \brief	Удаление информации о больном.
+	 * 
+	 * \param	register_number	Регистрационный номер.
+	 * \return	В случае успеха - истина.
+	 */
 	bool RemovePatient(std::string_view register_number);
-	//просмотр всех больных
-	std::vector<const Patient&> GetPatients();
+	/**
+	 * \brief	Просмотр всех больных.
+	 * 
+	 * \return Массив указательней на больных.
+	 */
+	std::vector<std::shared_ptr<Patient>> GetPatients() const;
 
 	//Поиска больного по рег. номеру.
 	//Результат - все сведения о больном и ФИО врача к которому у него направление
 	//std::pair<const std::string&, const Patient&>> GetPatientInfo();
-
-	//Поиск больного по ФИО.Результат - список больных с указанием номера и ФИО.
-
+	/**
+	 * \brief	Поиск больного по ФИО.
+	 * 
+	 * \param	name	ФИО.
+	 * \return	Список указателей на больных.
+	 */
+	std::vector<std::shared_ptr<Patient>> GetPatientsByName(std::string_view name) const;
 
 
 	//Добавление нового врача
@@ -44,6 +62,8 @@ private:
 	HashTable<std::string, std::shared_ptr<Patient>, RegisterNumberHash> number_patient_;
 	/** Для быстрого поиска по ФИО используем мульти хэш таблицу. Ключ - ФИО */
 	std::unordered_multimap<std::string, std::shared_ptr<Patient>> name_patients_;
+
+	//В сортированном списке храним направления к врачу. Сортируем по ФИО врача
 };
 
 
