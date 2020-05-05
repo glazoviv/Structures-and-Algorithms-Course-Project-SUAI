@@ -140,4 +140,3 @@ int FindSubstring(std::string_view str, std::string_view substring, int start_po
 
     return j == sub_size ? i : -1;
 }
-

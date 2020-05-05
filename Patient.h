@@ -85,4 +85,3 @@ std::string EnterRegisterNumber();
 struct RegisterNumberHash {
 	size_t operator() (std::string_view number) const;
 };
-

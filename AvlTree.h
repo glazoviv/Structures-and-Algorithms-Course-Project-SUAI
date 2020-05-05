@@ -337,5 +337,3 @@ private:
     /** Корневой узел */
     std::shared_ptr<Node> root_;
 };
-
-

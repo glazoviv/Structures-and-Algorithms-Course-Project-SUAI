@@ -57,4 +57,3 @@ private:
 	/** Объект поликлиники, которым управляет Gui */
 	ClinicManager clinic_;
 };
-

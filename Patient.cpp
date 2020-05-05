@@ -87,4 +87,3 @@ size_t RegisterNumberHash::operator() (std::string_view number) const {
 
 	return second * iX + first;
 }
-
