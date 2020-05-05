@@ -23,9 +23,7 @@ std::shared_ptr<Doctor> Doctor::EnterDoctor() {
 		return !value.empty() && value.size() <= MAX_SIZE_STR;
 	};
 
-	doctor->name_ = EnterStringValue("Введите ФИО врача:",
-		"Ошибка: ФИО должно быть не менее 1 и не более 25 символов",
-		check_length_25);
+	doctor->name_ = EnterDoctorName();
 
 	doctor->position_ = EnterStringValue("Введите должность врача:",
 		"Ошибка: должность должна быть не менее 1 и не более 25 символов",
@@ -61,4 +59,13 @@ unsigned int Doctor::GetCabinetNumber() const {
 
 std::string_view Doctor::GetSchedule() const {
     return schedule_;
+}
+
+std::string EnterDoctorName() {
+	return EnterStringValue("Введите ФИО врача:",
+		"Ошибка: ФИО должно быть не менее 1 и не более 25 символов",
+		[](string_view value) -> bool {
+		constexpr size_t MAX_SIZE_STR = 25;
+		return !value.empty() && value.size() <= MAX_SIZE_STR;
+	});
 }

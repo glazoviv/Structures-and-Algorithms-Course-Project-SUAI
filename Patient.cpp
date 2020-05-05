@@ -20,9 +20,7 @@ shared_ptr<Patient> Patient::EnterPatient() {
 
 	cout << "¬вод данных о пациенте\n\n";
 
-	patient->registration_number_ = EnterStringValue(	"¬ведите регистрационный номер:",
-													"ќшибка: –егистрационный номер должен быть формата MM-NNNNNN", 
-													IsValidRegistrationNumber);
+	patient->registration_number_ = EnterRegisterNumber();
 
 	patient->year_ = GetULongValue(	"¬ведите год рождени€:",
 										"ќшибка: год должен быть в промежутке 1900-2020",
@@ -70,7 +68,23 @@ std::string_view Patient::GetWork() const {
 	return work_;
 }
 
-bool Patient::IsValidRegistrationNumber(string_view number) {
+bool IsValidRegistrationNumber(string_view number) {
 	const regex regex("(\\d{2})-(\\d{6})");
 	return regex_match(number.data(), regex);
 }
+
+std::string EnterRegisterNumber() {
+	return EnterStringValue("¬ведите регистрационный номер:",
+		"ќшибка: –егистрационный номер должен быть формата MM-NNNNNN",
+		IsValidRegistrationNumber);
+}
+
+size_t RegisterNumberHash::operator() (std::string_view number) const {
+	int iX = 2'123'417;
+
+	auto first = std::stoi(number.substr(0, 2).data());
+	auto second = std::stoi(number.substr(3).data());
+
+	return second * iX + first;
+}
+

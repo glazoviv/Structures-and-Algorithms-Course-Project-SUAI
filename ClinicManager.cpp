@@ -23,7 +23,7 @@ bool ClinicManager::AddPatient(std::shared_ptr<Patient> patient) {
 	return true;
 }
 
-bool ClinicManager::RemovePatient(std::string_view register_number) {
+bool ClinicManager::ErasePatient(std::string_view register_number) {
 	bool result = false;
 
 	if (number_patient_.Contains(register_number)) {
@@ -66,6 +66,14 @@ std::vector<std::weak_ptr<Patient>> ClinicManager::GetPatients() const {
 	return result;
 }
 
+void ClinicManager::ErasePatients() {
+	number_patient_.Clear();
+	name_patients_.clear();
+
+	referrals_.Clear();
+}
+
+
 std::vector<std::weak_ptr<Patient>> ClinicManager::GetPatientsByName(std::string_view name) const {
 	std::vector<std::weak_ptr<Patient>> result;
 
@@ -105,8 +113,8 @@ bool ClinicManager::EraseDoctor(std::string_view name) {
 	return true;
 }
 
-std::vector<std::shared_ptr<Doctor>> ClinicManager::GetDoctors() {
-	std::vector<std::shared_ptr<Doctor>> result;
+std::vector<std::weak_ptr<Doctor>> ClinicManager::GetDoctors() {
+	std::vector<std::weak_ptr<Doctor>> result;
 
 	name_doctor_.SymmetricForEach([&result](AvlTree<std::string_view, std::shared_ptr<Doctor>>::Node node) mutable {
 		result.push_back(node.value);

@@ -54,3 +54,7 @@ private:
     std::string schedule_;
 };
 
+/**
+ * \brief   Получение из консоли ФИО врача с проверкой.
+ */
+std::string EnterDoctorName();

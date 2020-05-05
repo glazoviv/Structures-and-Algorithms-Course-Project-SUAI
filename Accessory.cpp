@@ -21,21 +21,9 @@ void PressToContinue() {
         << endl;
 
     cin.get();
+#ifdef __linux__
     cin.get();
-}
-
-void ShowMenu() {
-    cout << " Menu:"
-        << "\n 1.Add flight"
-        << "\n 2.Edit flight"
-        << "\n 3.Remove flight"
-        << "\n 4.Find flights operated by air"
-        << "\n 5.Display the entire list of flights"
-        << "\n 6.Sort flights list"
-        << "\n 7.Save database"
-        << "\n 8.Load database"
-        << "\n 0.Exit"
-        << endl;
+#endif
 }
 
 unsigned long GetULongValue() {

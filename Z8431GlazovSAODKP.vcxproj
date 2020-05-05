@@ -151,7 +151,9 @@
     <ClCompile Include="accessory.cpp" />
     <ClCompile Include="ClinicManager.cpp" />
     <ClCompile Include="Doctor.cpp" />
+    <ClCompile Include="Gui.cpp" />
     <ClCompile Include="Patient.cpp" />
+    <ClCompile Include="Referral.cpp" />
     <ClCompile Include="Z8431GlazovSAODKP.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -160,6 +162,7 @@
     <ClInclude Include="ClinicManager.h" />
     <ClInclude Include="CLinkedList.h" />
     <ClInclude Include="Doctor.h" />
+    <ClInclude Include="Gui.h" />
     <ClInclude Include="HashTable.h" />
     <ClInclude Include="Patient.h" />
     <ClInclude Include="Referral.h" />

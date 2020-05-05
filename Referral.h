@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <memory>
 
 /**
  * \brief   Нправление к врачу.
@@ -14,4 +15,11 @@ struct Referral {
     std::string date;
     /** Время направления. 1-20 символов */
     std::string time;
+
+    /**
+     * \brief   Ввод направления из консоли.
+     * 
+     * \return Направление.
+     */
+    static std::shared_ptr<Referral> Enter();
 };

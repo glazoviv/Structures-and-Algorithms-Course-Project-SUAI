@@ -53,14 +53,6 @@ public:
 	 * \return	Место работы.
 	 */
 	std::string_view GetWork() const;
-private:
-	/**
-	 * \brief	Проверяет регистрационный номер согласно формату.
-	 * \param	number	Регистрационный номер
-	 * 
-	 * \return	Истину, если номер валиден.
-	 */
-	static bool IsValidRegistrationNumber(std::string_view number);
 
 private:
 	/** Регистрационный номер - формат "MM-NNNNNN". MM - номер участка, NNNNNN - порядковый номер */
@@ -76,16 +68,21 @@ private:
 };
 
 /**
+ * \brief	Проверяет регистрационный номер согласно формату.
+ * \param	number	Регистрационный номер
+ *
+ * \return	Истину, если номер валиден.
+ */
+bool IsValidRegistrationNumber(std::string_view number);
+/**
+ * \brief	Ввод из консоли регистрационного номера.
+ */
+std::string EnterRegisterNumber();
+
+/**
  * \brief	Структура для расчета хэша по номеру регистрации.
  */
 struct RegisterNumberHash {
-	size_t operator() (std::string_view number) const {
-		int iX = 2'123'417;
-
-		auto first = std::stoi(number.substr(0, 2).data());
-		auto second = std::stoi(number.substr(3).data());
-
-		return second * iX + first;
-	}
+	size_t operator() (std::string_view number) const;
 };
 
