@@ -73,6 +73,29 @@ void ClinicManager::ErasePatients() {
 	referrals_.Clear();
 }
 
+std::pair<std::weak_ptr<Patient>, std::string> ClinicManager::GetPatient(std::string_view reg_number) {
+	if(reg_number.empty()) {
+		return { {}, {} };
+	}
+
+	auto patient = number_patient_.Get(reg_number);
+	if(!patient) {
+		return { {}, {} };
+	}
+
+	auto node = referrals_.Find([reg_number](std::shared_ptr<Referral> other) {
+		return reg_number == other->register_number;
+	});
+
+	std::string doctor_name;
+
+	if(node) {
+		doctor_name = node->value->doctor_name;
+	}
+
+	return { patient , doctor_name };
+}
+
 
 std::vector<std::weak_ptr<Patient>> ClinicManager::GetPatientsByName(std::string_view name) const {
 	std::vector<std::weak_ptr<Patient>> result;
@@ -126,6 +149,27 @@ std::vector<std::weak_ptr<Doctor>> ClinicManager::GetDoctors() {
 void ClinicManager::EraseDoctors() {
 	name_doctor_.Clear();
 	referrals_.Clear();
+}
+
+std::pair<std::weak_ptr<Doctor>, std::vector<std::string>> ClinicManager::GetDoctorByName(std::string_view name) {
+	if(!name_doctor_.Contains(name)) {
+		return {};
+	}
+
+	auto doctor = name_doctor_.GetValue(name);
+
+	vector<string> patients;
+
+	if(doctor) {
+
+		referrals_.ForEach([&patients, name](std::shared_ptr<Referral> other) mutable {
+			if(name == other->doctor_name) {
+				patients.push_back(other->register_number);
+			}
+		});
+	}
+
+	return { doctor, patients };
 }
 
 std::vector<std::weak_ptr<Doctor>> ClinicManager::GetDoctorsByPosition(std::string_view position) {

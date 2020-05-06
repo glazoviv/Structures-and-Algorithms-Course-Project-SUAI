@@ -27,12 +27,22 @@ private:
 	void ErasePatient();
 	void ShowPatients();
 	void ErasePatients();
+
 	void FindPatient();
+	void FindPatientByNumber();
+	void FindPatientsByName();
+
+
 	void AddNewDoctor();
 	void EraseDoctor();
 	void ShowDoctors();
 	void EraseDoctors();
+
 	void FindDoctor();
+	void FindDoctorByName();
+	void FindDoctorsByPosition();
+
+
 	void RegisterReferral();
 	void RefundRefferal();
 

@@ -42,7 +42,7 @@ public:
 
 	//Поиска больного по рег. номеру.
 	//Результат - все сведения о больном и ФИО врача к которому у него направление
-	//std::pair<const std::string&, const Patient&>> GetPatientInfo();
+	std::pair<std::weak_ptr<Patient>, std::string> GetPatient(std::string_view reg_number);
 	/**
 	 * \brief	Поиск больного по ФИО.
 	 * 
@@ -88,7 +88,7 @@ public:
 	 * 
 	 * \return	Врач + ФИО и рег № больных, у которых направление к врачу.
 	 */
-	std::pair <std::weak_ptr<Doctor>, std::vector<std::weak_ptr<Patient>>> GetDoctorByName(std::string_view name);
+	std::pair <std::weak_ptr<Doctor>, std::vector<std::string>> GetDoctorByName(std::string_view name);
 
 	/**
 	 * \brief	Поиск врача по должностиили её части.

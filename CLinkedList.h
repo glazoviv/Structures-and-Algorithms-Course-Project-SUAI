@@ -171,6 +171,27 @@ public:
 
 		return nullptr;
 	}
+
+	/**
+	 * \brief	Пройти всё с применением функции к каждому элементу.
+	 * 
+	 * \param	predicate	Функция, применяемая к каждому элементу.
+	 */
+	template<typename Func>
+	void ForEach(Func predicate) {
+		if (!head_) {
+			return;
+		}
+
+		predicate(head_->value);
+
+		auto node = head_->next;
+		while (node != head_) {
+			predicate(node->value);
+			node = node->next;
+		}
+	}
+
 	/**
 	 * \brief	Получить корневой узел.
 	 * 

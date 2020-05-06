@@ -62,3 +62,9 @@ std::string EnterStringValue(std::string_view enter_message,
  * /return  Номер первого символа искомой подстроки в строке. Если не найден, то -1.
  */
 int FindSubstring(std::string_view str, std::string_view substring, int start_pos = 0);
+/**
+ * \brief   Вывести линию размеров size в косноль.
+ * 
+ * \param   size    Размер линии в символах.
+ */
+void PrintLine(size_t size);

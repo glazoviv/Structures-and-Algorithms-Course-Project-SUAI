@@ -8,6 +8,7 @@
 #include "Accessory.h"
 
 #include <iostream>
+#include <iomanip>
 #include <regex>
 
 using namespace std;
@@ -51,7 +52,7 @@ unsigned long GetULongValue() {
     return stoul(value.c_str());
 }
 
-unsigned long GetULongValue(std::string_view enter_message, std::string_view error_message, std::function<bool(unsigned long)> check) {
+unsigned long GetULongValue(string_view enter_message, string_view error_message, function<bool(unsigned long)> check) {
     bool bFirst = true;
     unsigned long temp = 0;
 
@@ -88,14 +89,14 @@ string EnterStringValue() {
             cout << "Ошибка ввода, значение должно быть строкой.\n";
         }
 
-        getline(std::cin, value);
+        getline(cin, value);
 
     } while (!cin.good());
 
     return value;
 }
 
-std::string EnterStringValue(std::string_view enter_message, std::string_view error_message, std::function<bool(std::string_view)> check) {
+string EnterStringValue(string_view enter_message, string_view error_message, function<bool(string_view)> check) {
     bool bFirst = true;
     string temp;
 
@@ -116,7 +117,7 @@ std::string EnterStringValue(std::string_view enter_message, std::string_view er
     return temp;
 }
 
-int FindSubstring(std::string_view str, std::string_view substring, int start_pos) {
+int FindSubstring(string_view str, string_view substring, int start_pos) {
     if(start_pos >= str.size() 
         || start_pos < 0 
         ||  substring.size() > str.size()) {
@@ -139,4 +140,12 @@ int FindSubstring(std::string_view str, std::string_view substring, int start_po
     } while (j < sub_size && i < str_size - sub_size);
 
     return j == sub_size ? i : -1;
+}
+
+void PrintLine(size_t size) {
+    cout << setfill('-')
+        << setw(size)
+        << ""
+        << setfill(' ')
+        << "";
 }

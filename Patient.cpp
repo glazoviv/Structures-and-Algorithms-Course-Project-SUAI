@@ -35,9 +35,8 @@ shared_ptr<Patient> Patient::EnterPatient() {
 		return !value.empty() && value.size() <= MAX_SIZE_STR;
 	};
 
-	patient->name_ = EnterStringValue(	"Введите ФИО пациента:",
-									"Ошибка: имя должно быть не менее 1 и не более 50 символов",
-									check_length);
+	patient->name_ = EnterPatientName();
+
 	patient->address_ = EnterStringValue("Введите адрес пациента:",
 		"Ошибка: адрес должен быть не менее 1 и не более 50 символов",
 		check_length);
@@ -69,7 +68,7 @@ std::string_view Patient::GetWork() const {
 }
 
 bool IsValidRegistrationNumber(string_view number) {
-	const regex regex("(\\d{2})-(\\d{6})");
+	static const regex regex("(\\d{2})-(\\d{6})");
 	return regex_match(number.data(), regex);
 }
 
@@ -77,6 +76,15 @@ std::string EnterRegisterNumber() {
 	return EnterStringValue("Введите регистрационный номер:",
 		"Ошибка: Регистрационный номер должен быть формата MM-NNNNNN",
 		IsValidRegistrationNumber);
+}
+
+std::string EnterPatientName() {
+	return EnterStringValue("Введите ФИО пациента:",
+		"Ошибка: имя должно быть не менее 1 и не более 50 символов",
+		[](string_view value) -> bool {
+		constexpr size_t MAX_SIZE_STR = 50;
+		return !value.empty() && value.size() <= MAX_SIZE_STR;
+	});
 }
 
 size_t RegisterNumberHash::operator() (std::string_view number) const {

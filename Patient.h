@@ -78,6 +78,10 @@ bool IsValidRegistrationNumber(std::string_view number);
  * \brief	Ввод из консоли регистрационного номера.
  */
 std::string EnterRegisterNumber();
+/**
+ * \brief	Ввод из консоли ФИО больного.
+ */
+std::string EnterPatientName();
 
 /**
  * \brief	Структура для расчета хэша по номеру регистрации.
