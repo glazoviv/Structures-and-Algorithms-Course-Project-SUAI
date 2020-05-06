@@ -100,7 +100,7 @@ std::pair<std::weak_ptr<Patient>, std::string> ClinicManager::GetPatient(std::st
 std::vector<std::weak_ptr<Patient>> ClinicManager::GetPatientsByName(std::string_view name) const {
 	std::vector<std::weak_ptr<Patient>> result;
 
-	if(name_patients_.count(name.data()) > 1) {
+	if(name_patients_.count(name.data()) > 0) {
 		auto [begin, end] = name_patients_.equal_range(name);
 
 		for (auto it = begin; it != end; ++it) {

@@ -308,10 +308,10 @@ void ClinicGui::FindDoctorsByPosition() {
         if(auto doctor = doctor_w.lock()) {
             PrintLine(70);
 
-            cout << "ФИО: " << doctor->GetName() << '\n'
+            cout << "\nФИО: " << doctor->GetName() << '\n'
                  << "Должность: " << doctor->GetPosition() << '\n'
                  << "Номер кабинета: " << doctor->GetCabinetNumber() << '\n'
-                 << "График приема: " << doctor->GetSchedule();
+                 << "График приема: " << doctor->GetSchedule() << '\n';
         }
     }
 }
