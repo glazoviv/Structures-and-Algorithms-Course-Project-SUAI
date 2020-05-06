@@ -1,4 +1,11 @@
-﻿#pragma once
+﻿/*****************************************************************//**
+ * \file   ClinicManager.h
+ * \brief  Содержит определение класса поликлиники.
+ * 
+ * \author Glazov I.V.
+ * \date   May 2020
+ *********************************************************************/
+#pragma once
 
 #include "Patient.h"
 #include "Doctor.h"
@@ -8,7 +15,9 @@
 #include "AvlTree.h"
 #include "CLinkedList.h"
 
-
+/**
+ * \brief	Класс поликлиники.
+ */
 class ClinicManager {
 public:
 	/**
