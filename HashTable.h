@@ -34,7 +34,7 @@ public:
         }
 
 
-        size_t bucket = GetBucket(key);
+        int bucket = GetBucket(key);
         
         if(!storage_[bucket].has_value()) {
             storage_[bucket] = { key, std::move(value) };
@@ -61,8 +61,10 @@ public:
      * \return  Истина, усли значение существует.
      */
     bool Contains(const Key& key) const {
-        size_t bucket = GetBucket(key);
-        return storage_.at(bucket).has_value() && storage_.at(bucket)->key == key;
+        int bucket = GetBucket(key);
+        return bucket != -1 
+            && storage_.at(bucket).has_value() 
+            && storage_.at(bucket)->key == key;
     }
     /**
      * \brief   Удаление элемента по ключу.
@@ -134,14 +136,18 @@ private:
      * \brief   Получить номер корзины соответствующий ключу.
      * 
      * \param   key Ключ
-     * \return  Номер корзины.
+     * \return  Номер корзины. В случае отсутсвия места - -1;
      */
-    size_t GetBucket(const Key& key) const {
+    int GetBucket(const Key& key) const {
         static Hash hash_function;
 
         size_t bucket = hash_function(key) % capacity_;
-
         while (storage_[bucket].has_value() && storage_[bucket]->key != key) {
+
+            if(bucket + step_ == capacity_) {
+                return -1;
+            }
+
             bucket = (bucket + step_) % capacity_;
         }
 
