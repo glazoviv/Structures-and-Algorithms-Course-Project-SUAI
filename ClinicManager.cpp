@@ -1,6 +1,6 @@
-/*****************************************************************//**
+п»ї/*****************************************************************//**
  * \file   ClinicManager.cpp
- * \brief  Содержит реализацию класса поликлиники.
+ * \brief  РЎРѕРґРµСЂР¶РёС‚ СЂРµР°Р»РёР·Р°С†РёСЋ РєР»Р°СЃСЃР° РїРѕР»РёРєР»РёРЅРёРєРё.
  * 
  * \author Glazov I.V.
  * \date   May 2020
@@ -37,7 +37,7 @@ bool ClinicManager::ErasePatient(std::string_view register_number) {
 		auto patient = number_patient_.Get(register_number);
 		
 		if(!patient) {
-			throw runtime_error("Непредвиденная ошибка при удалении пациента");
+			throw runtime_error("РќРµРїСЂРµРґРІРёРґРµРЅРЅР°СЏ РѕС€РёР±РєР° РїСЂРё СѓРґР°Р»РµРЅРёРё РїР°С†РёРµРЅС‚Р°");
 		}
 
 		auto[begin,end] = name_patients_.equal_range(patient->GetName().data());
@@ -51,7 +51,7 @@ bool ClinicManager::ErasePatient(std::string_view register_number) {
 
 		result = number_patient_.Erase(register_number);
 
-		/* Удаляем направления */
+		/* РЈРґР°Р»СЏРµРј РЅР°РїСЂР°РІР»РµРЅРёСЏ */
 		referrals_.Erase([register_number](std::shared_ptr<Referral> referral) {
 			return register_number == referral->register_number;
 		});
@@ -135,7 +135,7 @@ bool ClinicManager::EraseDoctor(std::string_view name) {
 
 	name_doctor_.Erase(name);
 
-	/* Удаляем направления */
+	/* РЈРґР°Р»СЏРµРј РЅР°РїСЂР°РІР»РµРЅРёСЏ */
 	referrals_.Erase([name](std::shared_ptr<Referral> referral) {
 		return name == referral->doctor_name;
 	});

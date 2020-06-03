@@ -1,6 +1,6 @@
-/*****************************************************************//**
+п»ї/*****************************************************************//**
  * \file   Doctor.cpp
- * \brief  Содержит реализацию класса представляющего доктора
+ * \brief  РЎРѕРґРµСЂР¶РёС‚ СЂРµР°Р»РёР·Р°С†РёСЋ РєР»Р°СЃСЃР° РїСЂРµРґСЃС‚Р°РІР»СЏСЋС‰РµРіРѕ РґРѕРєС‚РѕСЂР°
  * 
  * \author Glazov I.V.
  * \date   May 2020
@@ -15,9 +15,9 @@ using namespace std;
 std::shared_ptr<Doctor> Doctor::EnterDoctor() {
 	auto doctor = make_shared<Doctor>();
 
-	cout << "Ввод данных о враче\n\n";
+	cout << "Р’РІРѕРґ РґР°РЅРЅС‹С… Рѕ РІСЂР°С‡Рµ\n\n";
 
-	//Ограничение на длину строковых данных пациента
+	//РћРіСЂР°РЅРёС‡РµРЅРёРµ РЅР° РґР»РёРЅСѓ СЃС‚СЂРѕРєРѕРІС‹С… РґР°РЅРЅС‹С… РїР°С†РёРµРЅС‚Р°
 	auto check_length_25 = [](string_view value) -> bool {
 		constexpr size_t MAX_SIZE_STR = 25;
 		return !value.empty() && value.size() <= MAX_SIZE_STR;
@@ -25,18 +25,18 @@ std::shared_ptr<Doctor> Doctor::EnterDoctor() {
 
 	doctor->name_ = EnterDoctorName();
 
-	doctor->position_ = EnterStringValue("Введите должность врача:",
-		"Ошибка: должность должна быть не менее 1 и не более 25 символов",
+	doctor->position_ = EnterStringValue("Р’РІРµРґРёС‚Рµ РґРѕР»Р¶РЅРѕСЃС‚СЊ РІСЂР°С‡Р°:",
+		"РћС€РёР±РєР°: РґРѕР»Р¶РЅРѕСЃС‚СЊ РґРѕР»Р¶РЅР° Р±С‹С‚СЊ РЅРµ РјРµРЅРµРµ 1 Рё РЅРµ Р±РѕР»РµРµ 25 СЃРёРјРІРѕР»РѕРІ",
 		check_length_25);
 
-	doctor->cabinet_number_ = GetULongValue("Введите номер кабинета:",
+	doctor->cabinet_number_ = GetULongValue("Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ РєР°Р±РёРЅРµС‚Р°:",
 		"",
 		[](unsigned long year) -> bool {
 		return true;
 	});
 
-	doctor->schedule_ = EnterStringValue("Введите расписание врача:",
-		"Ошибка: расписание должно быть не менее 1 и не более 50 символов",
+	doctor->schedule_ = EnterStringValue("Р’РІРµРґРёС‚Рµ СЂР°СЃРїРёСЃР°РЅРёРµ РІСЂР°С‡Р°:",
+		"РћС€РёР±РєР°: СЂР°СЃРїРёСЃР°РЅРёРµ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ РЅРµ РјРµРЅРµРµ 1 Рё РЅРµ Р±РѕР»РµРµ 50 СЃРёРјРІРѕР»РѕРІ",
 		[](string_view value) -> bool {
 		constexpr size_t MAX_SIZE_STR = 50;
 		return !value.empty() && value.size() <= MAX_SIZE_STR;
@@ -62,8 +62,8 @@ std::string_view Doctor::GetSchedule() const {
 }
 
 std::string EnterDoctorName() {
-	return EnterStringValue("Введите ФИО врача:",
-		"Ошибка: ФИО должно быть не менее 1 и не более 25 символов",
+	return EnterStringValue("Р’РІРµРґРёС‚Рµ Р¤РРћ РІСЂР°С‡Р°:",
+		"РћС€РёР±РєР°: Р¤РРћ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ РЅРµ РјРµРЅРµРµ 1 Рё РЅРµ Р±РѕР»РµРµ 25 СЃРёРјРІРѕР»РѕРІ",
 		[](string_view value) -> bool {
 		constexpr size_t MAX_SIZE_STR = 25;
 		return !value.empty() && value.size() <= MAX_SIZE_STR;

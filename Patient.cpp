@@ -1,7 +1,7 @@
-/*****************************************************************//**
+п»ї/*****************************************************************//**
  * \file   Patient.cpp
- * \brief  Содержит реализацию класса представляющего пациента 
- *		   клиники
+ * \brief  РЎРѕРґРµСЂР¶РёС‚ СЂРµР°Р»РёР·Р°С†РёСЋ РєР»Р°СЃСЃР° РїСЂРµРґСЃС‚Р°РІР»СЏСЋС‰РµРіРѕ РїР°С†РёРµРЅС‚Р° 
+ *		   РєР»РёРЅРёРєРё
  * 
  * \author Glazov I.V.
  * \date   May 2020
@@ -18,18 +18,18 @@ using namespace std;
 shared_ptr<Patient> Patient::EnterPatient() {
 	auto patient = make_shared<Patient>();
 
-	cout << "Ввод данных о пациенте\n\n";
+	cout << "Р’РІРѕРґ РґР°РЅРЅС‹С… Рѕ РїР°С†РёРµРЅС‚Рµ\n\n";
 
 	patient->registration_number_ = EnterRegisterNumber();
 
-	patient->year_ = GetULongValue(	"Введите год рождения:",
-										"Ошибка: год должен быть в промежутке 1900-2020",
+	patient->year_ = GetULongValue(	"Р’РІРµРґРёС‚Рµ РіРѕРґ СЂРѕР¶РґРµРЅРёСЏ:",
+										"РћС€РёР±РєР°: РіРѕРґ РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РІ РїСЂРѕРјРµР¶СѓС‚РєРµ 1900-2020",
 										[](unsigned long year) -> bool {
 											return year >= 1900 && year <= 2020;
 										});
 
 
-	//Ограничение на длину строковых данных пациента
+	//РћРіСЂР°РЅРёС‡РµРЅРёРµ РЅР° РґР»РёРЅСѓ СЃС‚СЂРѕРєРѕРІС‹С… РґР°РЅРЅС‹С… РїР°С†РёРµРЅС‚Р°
 	auto check_length = [](string_view value) -> bool {
 		constexpr size_t MAX_SIZE_STR = 50;
 		return !value.empty() && value.size() <= MAX_SIZE_STR;
@@ -37,11 +37,11 @@ shared_ptr<Patient> Patient::EnterPatient() {
 
 	patient->name_ = EnterPatientName();
 
-	patient->address_ = EnterStringValue("Введите адрес пациента:",
-		"Ошибка: адрес должен быть не менее 1 и не более 50 символов",
+	patient->address_ = EnterStringValue("Р’РІРµРґРёС‚Рµ Р°РґСЂРµСЃ РїР°С†РёРµРЅС‚Р°:",
+		"РћС€РёР±РєР°: Р°РґСЂРµСЃ РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РЅРµ РјРµРЅРµРµ 1 Рё РЅРµ Р±РѕР»РµРµ 50 СЃРёРјРІРѕР»РѕРІ",
 		check_length);
-	patient->work_ = EnterStringValue("Введите место работы пациента:",
-		"Ошибка: место должно быть не менее 1 и не более 50 символов",
+	patient->work_ = EnterStringValue("Р’РІРµРґРёС‚Рµ РјРµСЃС‚Рѕ СЂР°Р±РѕС‚С‹ РїР°С†РёРµРЅС‚Р°:",
+		"РћС€РёР±РєР°: РјРµСЃС‚Рѕ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ РЅРµ РјРµРЅРµРµ 1 Рё РЅРµ Р±РѕР»РµРµ 50 СЃРёРјРІРѕР»РѕРІ",
 		check_length);
 
 	return patient;
@@ -73,14 +73,14 @@ bool IsValidRegistrationNumber(string_view number) {
 }
 
 std::string EnterRegisterNumber() {
-	return EnterStringValue("Введите регистрационный номер:",
-		"Ошибка: Регистрационный номер должен быть формата MM-NNNNNN",
+	return EnterStringValue("Р’РІРµРґРёС‚Рµ СЂРµРіРёСЃС‚СЂР°С†РёРѕРЅРЅС‹Р№ РЅРѕРјРµСЂ:",
+		"РћС€РёР±РєР°: Р РµРіРёСЃС‚СЂР°С†РёРѕРЅРЅС‹Р№ РЅРѕРјРµСЂ РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ С„РѕСЂРјР°С‚Р° MM-NNNNNN",
 		IsValidRegistrationNumber);
 }
 
 std::string EnterPatientName() {
-	return EnterStringValue("Введите ФИО пациента:",
-		"Ошибка: имя должно быть не менее 1 и не более 50 символов",
+	return EnterStringValue("Р’РІРµРґРёС‚Рµ Р¤РРћ РїР°С†РёРµРЅС‚Р°:",
+		"РћС€РёР±РєР°: РёРјСЏ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ РЅРµ РјРµРЅРµРµ 1 Рё РЅРµ Р±РѕР»РµРµ 50 СЃРёРјРІРѕР»РѕРІ",
 		[](string_view value) -> bool {
 		constexpr size_t MAX_SIZE_STR = 50;
 		return !value.empty() && value.size() <= MAX_SIZE_STR;

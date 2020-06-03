@@ -1,7 +1,7 @@
-/*****************************************************************//**
+п»ї/*****************************************************************//**
  * \file   Gui.cpp
- * \brief  Содержит реализацию класса для управления поликлиникой
- *		   через графический интерфейс.
+ * \brief  РЎРѕРґРµСЂР¶РёС‚ СЂРµР°Р»РёР·Р°С†РёСЋ РєР»Р°СЃСЃР° РґР»СЏ СѓРїСЂР°РІР»РµРЅРёСЏ РїРѕР»РёРєР»РёРЅРёРєРѕР№
+ *		   С‡РµСЂРµР· РіСЂР°С„РёС‡РµСЃРєРёР№ РёРЅС‚РµСЂС„РµР№СЃ.
  * 
  * \author Glazov I.V.
  * \date   May 2020
@@ -62,10 +62,10 @@ void ClinicGui::Handle() {
                 RefundRefferal();
                 break;
             case 0:
-                ShowMessage("Выход\nСпасибо за использование программы!");
+                ShowMessage("Р’С‹С…РѕРґ\nРЎРїР°СЃРёР±Рѕ Р·Р° РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ РїСЂРѕРіСЂР°РјРјС‹!");
                 break;
             default:
-                ShowMessage("Ошибка: Неизвестная команда");
+                ShowMessage("РћС€РёР±РєР°: РќРµРёР·РІРµСЃС‚РЅР°СЏ РєРѕРјР°РЅРґР°");
                 break;  
         }
         cout << endl;
@@ -74,23 +74,23 @@ void ClinicGui::Handle() {
 }
 
 void ClinicGui::ShowMenu() {
-    cout << " Меню:"
-        << "\n 1.Регистрация нового больного"
-        << "\n 2.Удаление данных о больном"
-        << "\n 3.Показать информацию о больных"
-        << "\n 4.Очистка данных о больных"
-        << "\n 5.Поиск больного"
+    cout << " РњРµРЅСЋ:"
+        << "\n 1.Р РµРіРёСЃС‚СЂР°С†РёСЏ РЅРѕРІРѕРіРѕ Р±РѕР»СЊРЅРѕРіРѕ"
+        << "\n 2.РЈРґР°Р»РµРЅРёРµ РґР°РЅРЅС‹С… Рѕ Р±РѕР»СЊРЅРѕРј"
+        << "\n 3.РџРѕРєР°Р·Р°С‚СЊ РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ Р±РѕР»СЊРЅС‹С…"
+        << "\n 4.РћС‡РёСЃС‚РєР° РґР°РЅРЅС‹С… Рѕ Р±РѕР»СЊРЅС‹С…"
+        << "\n 5.РџРѕРёСЃРє Р±РѕР»СЊРЅРѕРіРѕ"
 
-        << "\n 6.Добавить врача"
-        << "\n 7.Удалить сведения о враче"
-        << "\n 8.Показать всех врачей"
-        << "\n 9.Очистить данные о врачах"
-        << "\n 10.Поиск по врачам"
+        << "\n 6.Р”РѕР±Р°РІРёС‚СЊ РІСЂР°С‡Р°"
+        << "\n 7.РЈРґР°Р»РёС‚СЊ СЃРІРµРґРµРЅРёСЏ Рѕ РІСЂР°С‡Рµ"
+        << "\n 8.РџРѕРєР°Р·Р°С‚СЊ РІСЃРµС… РІСЂР°С‡РµР№"
+        << "\n 9.РћС‡РёСЃС‚РёС‚СЊ РґР°РЅРЅС‹Рµ Рѕ РІСЂР°С‡Р°С…"
+        << "\n 10.РџРѕРёСЃРє РїРѕ РІСЂР°С‡Р°Рј"
 
-        << "\n 11.Регистрация направления к врачу"
-        << "\n 12.Возврат направления к врачу"
+        << "\n 11.Р РµРіРёСЃС‚СЂР°С†РёСЏ РЅР°РїСЂР°РІР»РµРЅРёСЏ Рє РІСЂР°С‡Сѓ"
+        << "\n 12.Р’РѕР·РІСЂР°С‚ РЅР°РїСЂР°РІР»РµРЅРёСЏ Рє РІСЂР°С‡Сѓ"
 
-        << "\n 0.Выход"
+        << "\n 0.Р’С‹С…РѕРґ"
         << endl;
 }
 
@@ -99,49 +99,49 @@ void ClinicGui::RegistrationNewPatient() {
 
     auto result = clinic_.AddPatient(patient);
 
-    ShowMessage(result ? "Пациент добавлен успешно" : "Ошибка: Пациент уже существует");
+    ShowMessage(result ? "РџР°С†РёРµРЅС‚ РґРѕР±Р°РІР»РµРЅ СѓСЃРїРµС€РЅРѕ" : "РћС€РёР±РєР°: РџР°С†РёРµРЅС‚ СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚");
 }
 
 void ClinicGui::ErasePatient() {
-    ShowHeader("Удаление данных о больном");
+    ShowHeader("РЈРґР°Р»РµРЅРёРµ РґР°РЅРЅС‹С… Рѕ Р±РѕР»СЊРЅРѕРј");
 
     auto number = EnterRegisterNumber();
     auto result = clinic_.ErasePatient(number);
 
-    ShowMessage(result ? "Пациент удален успешно" : "Ошибка: Пациент отсутствует");
+    ShowMessage(result ? "РџР°С†РёРµРЅС‚ СѓРґР°Р»РµРЅ СѓСЃРїРµС€РЅРѕ" : "РћС€РёР±РєР°: РџР°С†РёРµРЅС‚ РѕС‚СЃСѓС‚СЃС‚РІСѓРµС‚");
 }
 
 void ClinicGui::ShowPatients() {
-    ShowHeader("Показать информацию о больных");
+    ShowHeader("РџРѕРєР°Р·Р°С‚СЊ РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ Р±РѕР»СЊРЅС‹С…");
 
     auto patients = clinic_.GetPatients();
 
     if(patients.empty()) {
-        cout << "Пациенты отсутствуют";
+        cout << "РџР°С†РёРµРЅС‚С‹ РѕС‚СЃСѓС‚СЃС‚РІСѓСЋС‚";
     }
 
     for (int i = 0; i < patients.size(); ++i) {
         if(!patients[i].expired())
-        cout << i + 1 << ". " << "Рег. номер: " << patients[i].lock()->GetRegistrationNumber() 
-             << " ФИО: " << patients[i].lock()->GetName() 
+        cout << i + 1 << ". " << "Р РµРі. РЅРѕРјРµСЂ: " << patients[i].lock()->GetRegistrationNumber() 
+             << " Р¤РРћ: " << patients[i].lock()->GetName() 
              << '\n';
     }
 }
 
 void ClinicGui::ErasePatients() {
-    ShowHeader("Удаление информации о больных");
+    ShowHeader("РЈРґР°Р»РµРЅРёРµ РёРЅС„РѕСЂРјР°С†РёРё Рѕ Р±РѕР»СЊРЅС‹С…");
 
     clinic_.ErasePatients();
-    ShowMessage("Больные успешно удалены");
+    ShowMessage("Р‘РѕР»СЊРЅС‹Рµ СѓСЃРїРµС€РЅРѕ СѓРґР°Р»РµРЅС‹");
 }
 
 void ClinicGui::FindPatient() {
-    ShowHeader("Поиск больного");
+    ShowHeader("РџРѕРёСЃРє Р±РѕР»СЊРЅРѕРіРѕ");
 
-    auto number = GetULongValue("По какому параметру будет производится поиск?"
-        "\n1.По регистрационному номеру"
-        "\n2.По ФИО\n",
-        "Ошибка: значение должно быть 1 или 2",
+    auto number = GetULongValue("РџРѕ РєР°РєРѕРјСѓ РїР°СЂР°РјРµС‚СЂСѓ Р±СѓРґРµС‚ РїСЂРѕРёР·РІРѕРґРёС‚СЃСЏ РїРѕРёСЃРє?"
+        "\n1.РџРѕ СЂРµРіРёСЃС‚СЂР°С†РёРѕРЅРЅРѕРјСѓ РЅРѕРјРµСЂСѓ"
+        "\n2.РџРѕ Р¤РРћ\n",
+        "РћС€РёР±РєР°: Р·РЅР°С‡РµРЅРёРµ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ 1 РёР»Рё 2",
         [](unsigned long val) {
         return val == 1 || val == 2;
     });
@@ -157,44 +157,44 @@ void ClinicGui::FindPatient() {
 }
 
 void ClinicGui::FindPatientByNumber() {
-    ShowHeader("Поиск пациента по регистрационному номеру");
+    ShowHeader("РџРѕРёСЃРє РїР°С†РёРµРЅС‚Р° РїРѕ СЂРµРіРёСЃС‚СЂР°С†РёРѕРЅРЅРѕРјСѓ РЅРѕРјРµСЂСѓ");
 
     auto register_number = EnterRegisterNumber();
     auto[patient_w, doctor_name] = clinic_.GetPatient(register_number);
 
     if(auto patient = patient_w.lock()) {
-        cout << "ФИО: " << patient->GetName() << '\n'
-             << "Регистрационный номер: " << patient->GetRegistrationNumber() << '\n'
-             << "Год рождения: " << patient->GetYear() << '\n'
-             << "Адрес: " << patient->GetAddress() << '\n'
-             << "Место работы: " << patient->GetWork() << '\n';
+        cout << "Р¤РРћ: " << patient->GetName() << '\n'
+             << "Р РµРіРёСЃС‚СЂР°С†РёРѕРЅРЅС‹Р№ РЅРѕРјРµСЂ: " << patient->GetRegistrationNumber() << '\n'
+             << "Р“РѕРґ СЂРѕР¶РґРµРЅРёСЏ: " << patient->GetYear() << '\n'
+             << "РђРґСЂРµСЃ: " << patient->GetAddress() << '\n'
+             << "РњРµСЃС‚Рѕ СЂР°Р±РѕС‚С‹: " << patient->GetWork() << '\n';
 
         if(doctor_name.empty()) {
-            cout << "Направлений к врачу нет";
+            cout << "РќР°РїСЂР°РІР»РµРЅРёР№ Рє РІСЂР°С‡Сѓ РЅРµС‚";
         }
         else {
-            cout << "ФИО врачу к которому есть направление: " << doctor_name;
+            cout << "Р¤РРћ РІСЂР°С‡Сѓ Рє РєРѕС‚РѕСЂРѕРјСѓ РµСЃС‚СЊ РЅР°РїСЂР°РІР»РµРЅРёРµ: " << doctor_name;
         }
     }
     else {
-        ShowMessage("Пациент не найден");
+        ShowMessage("РџР°С†РёРµРЅС‚ РЅРµ РЅР°Р№РґРµРЅ");
     }
 }
 
 void ClinicGui::FindPatientsByName() {
-    ShowHeader("Поиск пациента по ФИО");
+    ShowHeader("РџРѕРёСЃРє РїР°С†РёРµРЅС‚Р° РїРѕ Р¤РРћ");
 
     auto name = EnterPatientName();
     auto patients = clinic_.GetPatientsByName(name);
 
     if (patients.empty()) {
-        cout << "Пациенты не найдены";
+        cout << "РџР°С†РёРµРЅС‚С‹ РЅРµ РЅР°Р№РґРµРЅС‹";
     }
 
     for (int i = 0; i < patients.size(); ++i) {
         if (!patients[i].expired())
-            cout << i + 1 << ". " << "Рег. номер: " << patients[i].lock()->GetRegistrationNumber()
-            << " ФИО: " << patients[i].lock()->GetName()
+            cout << i + 1 << ". " << "Р РµРі. РЅРѕРјРµСЂ: " << patients[i].lock()->GetRegistrationNumber()
+            << " Р¤РРћ: " << patients[i].lock()->GetName()
             << '\n';
     }
 
@@ -205,48 +205,48 @@ void ClinicGui::AddNewDoctor() {
 
     auto result = clinic_.AddDoctor(doctor);
 
-    ShowMessage(result ? "Доктор добавлен успешно" : "Ошибка: Доктор уже существует");
+    ShowMessage(result ? "Р”РѕРєС‚РѕСЂ РґРѕР±Р°РІР»РµРЅ СѓСЃРїРµС€РЅРѕ" : "РћС€РёР±РєР°: Р”РѕРєС‚РѕСЂ СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚");
 }
 
 void ClinicGui::EraseDoctor() {
-    ShowHeader("Удаление сведений о враче");
+    ShowHeader("РЈРґР°Р»РµРЅРёРµ СЃРІРµРґРµРЅРёР№ Рѕ РІСЂР°С‡Рµ");
 
     auto name = EnterDoctorName();
     auto result = clinic_.EraseDoctor(name);
 
-    ShowMessage(result ? "Доктор удален успешно" : "Ошибка: Доктор не найден");
+    ShowMessage(result ? "Р”РѕРєС‚РѕСЂ СѓРґР°Р»РµРЅ СѓСЃРїРµС€РЅРѕ" : "РћС€РёР±РєР°: Р”РѕРєС‚РѕСЂ РЅРµ РЅР°Р№РґРµРЅ");
 }
 
 void ClinicGui::ShowDoctors() {
-    ShowHeader("Показать всех врачей");
+    ShowHeader("РџРѕРєР°Р·Р°С‚СЊ РІСЃРµС… РІСЂР°С‡РµР№");
 
     auto doctors = clinic_.GetDoctors();
 
     if (doctors.empty()) {
-        ShowMessage("Докторов не найдено");
+        ShowMessage("Р”РѕРєС‚РѕСЂРѕРІ РЅРµ РЅР°Р№РґРµРЅРѕ");
     }
 
     for (int i = 0; i < doctors.size(); ++i) {
         if (!doctors[i].expired())
-            cout << i + 1 << ". " << "ФИО: " << doctors[i].lock()->GetName()
-            << " расписание: " << doctors[i].lock()->GetSchedule()
+            cout << i + 1 << ". " << "Р¤РРћ: " << doctors[i].lock()->GetName()
+            << " СЂР°СЃРїРёСЃР°РЅРёРµ: " << doctors[i].lock()->GetSchedule()
             << '\n';
     }
 }
 
 void ClinicGui::EraseDoctors() {
-    ShowHeader("Очистка данных о врачах");
+    ShowHeader("РћС‡РёСЃС‚РєР° РґР°РЅРЅС‹С… Рѕ РІСЂР°С‡Р°С…");
     clinic_.EraseDoctors();
-    ShowMessage("Данные удалены успешно");
+    ShowMessage("Р”Р°РЅРЅС‹Рµ СѓРґР°Р»РµРЅС‹ СѓСЃРїРµС€РЅРѕ");
 }
 
 void ClinicGui::FindDoctor() {
-    ShowHeader("Поиск врача");
+    ShowHeader("РџРѕРёСЃРє РІСЂР°С‡Р°");
 
-    auto number = GetULongValue("По какому параметру будет производится поиск?"
-        "\n1.По ФИО"
-        "\n2.По должности\n",
-        "Ошибка: значение должно быть 1 или 2",
+    auto number = GetULongValue("РџРѕ РєР°РєРѕРјСѓ РїР°СЂР°РјРµС‚СЂСѓ Р±СѓРґРµС‚ РїСЂРѕРёР·РІРѕРґРёС‚СЃСЏ РїРѕРёСЃРє?"
+        "\n1.РџРѕ Р¤РРћ"
+        "\n2.РџРѕ РґРѕР»Р¶РЅРѕСЃС‚Рё\n",
+        "РћС€РёР±РєР°: Р·РЅР°С‡РµРЅРёРµ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ 1 РёР»Рё 2",
         [](unsigned long val) {
         return val == 1 || val == 2;
     });
@@ -262,22 +262,22 @@ void ClinicGui::FindDoctor() {
 }
 
 void ClinicGui::FindDoctorByName() {
-    ShowHeader("Поиск врача по ФИО");
+    ShowHeader("РџРѕРёСЃРє РІСЂР°С‡Р° РїРѕ Р¤РРћ");
 
     auto name = EnterDoctorName();
     const auto&[doctor_w, patients] = clinic_.GetDoctorByName(name);
 
     if(auto doctor = doctor_w.lock()) {
-        cout << "ФИО: "             << doctor->GetName()            << '\n'
-             << "Должность: "       << doctor->GetPosition()        << '\n'
-             << "Номер кабинета: "  << doctor->GetCabinetNumber()   << '\n'
-             << "График приема: "   << doctor->GetSchedule()        << '\n';
+        cout << "Р¤РРћ: "             << doctor->GetName()            << '\n'
+             << "Р”РѕР»Р¶РЅРѕСЃС‚СЊ: "       << doctor->GetPosition()        << '\n'
+             << "РќРѕРјРµСЂ РєР°Р±РёРЅРµС‚Р°: "  << doctor->GetCabinetNumber()   << '\n'
+             << "Р“СЂР°С„РёРє РїСЂРёРµРјР°: "   << doctor->GetSchedule()        << '\n';
 
         if(patients.empty()) {
-            cout << "Пациентов на приём нет";
+            cout << "РџР°С†РёРµРЅС‚РѕРІ РЅР° РїСЂРёС‘Рј РЅРµС‚";
         } 
         else {
-            cout << "Рег. номера пациентов:";
+            cout << "Р РµРі. РЅРѕРјРµСЂР° РїР°С†РёРµРЅС‚РѕРІ:";
 
             for(string_view number : patients) {
                 cout << '\n' << number;
@@ -285,14 +285,14 @@ void ClinicGui::FindDoctorByName() {
         }
 
     } else {
-        ShowMessage("Доктор не найден");
+        ShowMessage("Р”РѕРєС‚РѕСЂ РЅРµ РЅР°Р№РґРµРЅ");
     }
 }
 
 void ClinicGui::FindDoctorsByPosition() {
-    ShowHeader("Поиск врача по должности");
+    ShowHeader("РџРѕРёСЃРє РІСЂР°С‡Р° РїРѕ РґРѕР»Р¶РЅРѕСЃС‚Рё");
 
-    auto position = EnterStringValue("Введите должность или её часть:",
+    auto position = EnterStringValue("Р’РІРµРґРёС‚Рµ РґРѕР»Р¶РЅРѕСЃС‚СЊ РёР»Рё РµС‘ С‡Р°СЃС‚СЊ:",
         {},
         [](auto str) {
         return true;
@@ -301,41 +301,41 @@ void ClinicGui::FindDoctorsByPosition() {
     auto doctors = clinic_.GetDoctorsByPosition(position);
     
     if(doctors.empty()) {
-        ShowMessage("Докторов не найдено");
+        ShowMessage("Р”РѕРєС‚РѕСЂРѕРІ РЅРµ РЅР°Р№РґРµРЅРѕ");
     }
 
     for (auto doctor_w : doctors) {
         if(auto doctor = doctor_w.lock()) {
             PrintLine(70);
 
-            cout << "\nФИО: " << doctor->GetName() << '\n'
-                 << "Должность: " << doctor->GetPosition() << '\n'
-                 << "Номер кабинета: " << doctor->GetCabinetNumber() << '\n'
-                 << "График приема: " << doctor->GetSchedule() << '\n';
+            cout << "\nР¤РРћ: " << doctor->GetName() << '\n'
+                 << "Р”РѕР»Р¶РЅРѕСЃС‚СЊ: " << doctor->GetPosition() << '\n'
+                 << "РќРѕРјРµСЂ РєР°Р±РёРЅРµС‚Р°: " << doctor->GetCabinetNumber() << '\n'
+                 << "Р“СЂР°С„РёРє РїСЂРёРµРјР°: " << doctor->GetSchedule() << '\n';
         }
     }
 }
 
 void ClinicGui::RegisterReferral() {
-    ShowHeader("Регистрация направления к врачу");
+    ShowHeader("Р РµРіРёСЃС‚СЂР°С†РёСЏ РЅР°РїСЂР°РІР»РµРЅРёСЏ Рє РІСЂР°С‡Сѓ");
 
     auto referral = Referral::Enter();
     auto code = clinic_.RegistrationRefferal(referral);
 
-    string message = "Направление зарегистрированно успешно";
+    string message = "РќР°РїСЂР°РІР»РµРЅРёРµ Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°РЅРЅРѕ СѓСЃРїРµС€РЅРѕ";
     
     switch(code) {
     case ClinicManager::ReferralError::DOCTOR_NOT_EXISTS:
-        message = "Ошибка: доктор не найден";
+        message = "РћС€РёР±РєР°: РґРѕРєС‚РѕСЂ РЅРµ РЅР°Р№РґРµРЅ";
         break;
     case ClinicManager::ReferralError::PATIENT_NOT_EXISTS:
-        message = "Ошибка: пациент не найден";
+        message = "РћС€РёР±РєР°: РїР°С†РёРµРЅС‚ РЅРµ РЅР°Р№РґРµРЅ";
         break;
     case ClinicManager::ReferralError::REFERRAL_EMPTY:
-        message = "Ошибка: направление не заполнено";
+        message = "РћС€РёР±РєР°: РЅР°РїСЂР°РІР»РµРЅРёРµ РЅРµ Р·Р°РїРѕР»РЅРµРЅРѕ";
         break;
     case ClinicManager::ReferralError::DATETIME_BUSY:
-        message = "Ошибка: на это время уже существует запись";
+        message = "РћС€РёР±РєР°: РЅР° СЌС‚Рѕ РІСЂРµРјСЏ СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚ Р·Р°РїРёСЃСЊ";
         break;
     }
 
@@ -343,12 +343,12 @@ void ClinicGui::RegisterReferral() {
 }
 
 void ClinicGui::RefundRefferal() {
-    ShowHeader("Регистрация направления к врачу");
+    ShowHeader("Р РµРіРёСЃС‚СЂР°С†РёСЏ РЅР°РїСЂР°РІР»РµРЅРёСЏ Рє РІСЂР°С‡Сѓ");
 
     auto referral = Referral::Enter();
     auto result = clinic_.RefundRefferal(referral);
 
-    ShowMessage(result ? "Направление возвращено успешно" : "Ошибка: направление не найдено");
+    ShowMessage(result ? "РќР°РїСЂР°РІР»РµРЅРёРµ РІРѕР·РІСЂР°С‰РµРЅРѕ СѓСЃРїРµС€РЅРѕ" : "РћС€РёР±РєР°: РЅР°РїСЂР°РІР»РµРЅРёРµ РЅРµ РЅР°Р№РґРµРЅРѕ");
 }
 
 void ClinicGui::ShowMessage(std::string_view message) {

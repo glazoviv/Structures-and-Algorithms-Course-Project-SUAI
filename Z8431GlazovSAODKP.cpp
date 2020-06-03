@@ -8,6 +8,8 @@
 
 #include <iostream>
 
+#include <windows.h>
+
 #include "Gui.h"
 
 using namespace std;
@@ -19,6 +21,10 @@ using namespace std;
  */
 int main() {
     setlocale(LC_ALL, "Rus");
+
+    //Фикс на случай полома настроек консоли
+    SetConsoleCP(1251);
+    SetConsoleOutputCP(1251);
     
     ClinicGui gui;
     gui.Handle();
